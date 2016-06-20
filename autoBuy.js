@@ -1,23 +1,21 @@
-javascript:
+function intervalSet(on) {
+    if (on) {
+        var oneMs = setInterval(function () {
+            buyBuilding();
+        }, 1);
 
-    function intervalSet(on) {
-        if (on) {
-            var oneMs = setInterval(function () {
-                buyBuilding();
-            }, 1);
-
-            var oneS = setInterval(function () {
-                buyUpgrades();
-                reloadForBadCookie();
-                specialUpgrade();
-                seasons();
-            }, 1000);
-        }
-        else {
-            clearInterval(oneMs);
-            clearInterval(oneS);
-        }
+        var oneS = setInterval(function () {
+            buyUpgrades();
+            reloadForBadCookie();
+            specialUpgrade();
+            seasons();
+        }, 1000);
     }
+    else {
+        clearInterval(oneMs);
+        clearInterval(oneS);
+    }
+}
 
 var oneMs = setInterval(function () {
     buyBuilding();
