@@ -282,8 +282,8 @@ function prestigeWorldWide() {
         if (split1[2] + " " + split1[3] == "of income)") {
             var split2 = split1[1].split("(");
             var split3 = split2[1].split("%");
-            if (split3[0] <= prestigeNow) {
-                console.log("did it!");
+            if (split3[0] >= prestigeNow) {
+                prestigeMe();
             }
         }
     }
@@ -308,8 +308,10 @@ function buyUpgrades() {
     }
     if (techLen > 0) {
         for (i = 0; i < skipLen; i++) {
-            if ((techList[i].getAttribute("onclick") == "Game.UpgradesById[" + noPurchase[i] + "].buy();") == false) {
-                techSkip++
+            for (j = 0; j < 3; j++) {
+                if ((techList[i].getAttribute("onclick") == "Game.UpgradesById[" + noPurchase[j] + "].buy();") == false) {
+                    techSkip++
+                }
             }
         }
         if (techSkip == 3) {
@@ -318,7 +320,7 @@ function buyUpgrades() {
                 document.getElementById("promptOption0").click();
             }
             else {
-                techList[0].click();
+                techList[i].click();
             }
         }
     }
