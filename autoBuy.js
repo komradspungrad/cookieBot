@@ -315,14 +315,14 @@ function buyUpgrades() {
                     techSkip++
                 }
             }
-        }
-        if (techSkip == 3) {
-            if (techList[i].getAttribute("onclick") == "Game.UpgradesById[69].buy();") {
-                techList[i].click()
-                document.getElementById("promptOption0").click();
-            }
-            else {
-                techList[i].click();
+            if (techSkip == 3) {
+                if (techList[i].getAttribute("onclick") == "Game.UpgradesById[69].buy();") {
+                    techList[i].click()
+                    document.getElementById("promptOption0").click();
+                }
+                else {
+                    techList[i].click();
+                }
             }
         }
     }
