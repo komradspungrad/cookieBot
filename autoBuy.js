@@ -39,7 +39,7 @@ function intervalSet(on) {
         intervalPrestige = setInterval(function () {
             prestigeWorldWide();
         }, 20000);
-        intervalReindeer = setInteval(function () {
+        intervalReindeer = setIntevral(function () {
             seasonPopup();
         }, 1000)
         intervalGoldenCookie = setInterval(function () {
