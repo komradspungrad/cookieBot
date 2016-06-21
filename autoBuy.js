@@ -265,6 +265,8 @@ function prestigeMe() {
             document.getElementById("ascendButton").click();
             document.getElementById("promptOption0").click();
             intervalSet(true);
+            intervalSetDragon(true);
+            intervalSetSanta(true);
         }
     }, 5000)
 }
@@ -290,7 +292,7 @@ function prestigeWorldWide() {
 }
 
 //Ids for upgrade skips
-var noPurchase = [71, 72, 73]
+var noPurchase = [71,72,73]
 var skipLen = noPurchase.length;
 
 //Buy upgrades when they're available
@@ -307,8 +309,8 @@ function buyUpgrades() {
         }
     }
     if (techLen > 0) {
-        for (i = 0; i < skipLen; i++) {
-            for (j = 0; j < 3; j++) {
+        for (i = 0; i < techLen; i++) {
+            for (j = 0; j < skipLen; j++) {
                 if ((techList[i].getAttribute("onclick") == "Game.UpgradesById[" + noPurchase[j] + "].buy();") == false) {
                     techSkip++
                 }
