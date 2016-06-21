@@ -7,6 +7,8 @@ var intervalSpecial = null;
 var intervalPrestige = null;
 var intervalReindeer = null;
 var intervalGoldenCookie = null;
+var intervalDragon = null;
+var intervalSanta = null;
 
 //Common interface statics
 var tech = document.getElementById("techUpgrades");
@@ -40,10 +42,11 @@ function intervalSet(on) {
         }, 20000);
         intervalReindeer = setInterval(function () {
             seasonPopup();
-        }, 1000)
+        }, 1000);
         intervalGoldenCookie = setInterval(function () {
             goldenCookie();
-        }, 1000)
+        }, 1000);
+
     }
     else {
         clearInterval(intervalBuildings);
@@ -56,8 +59,32 @@ function intervalSet(on) {
     }
 }
 
+function intervalSetDragon(on) {
+    if (on) {
+        intervalDragon = setInterval(function () {
+            upgradeDragon();
+        }, 1);
+    }
+    else {
+        clearInterval(intervalDragon);
+    }
+}
+
+function intervalSetSanta(on) {
+    if (on) {
+        intervalSanta = setInterval(function () {
+            upgradeSanta();
+        }, 1);
+    }
+    else {
+        clearInterval(intervalSanta);
+    }
+}
+
 //Start the setintervals
 intervalSet(true);
+intervalSetDragon(true);
+intervalSetSanta(true);
 
 //Loop for picking seasons
 function seasons() {
@@ -137,35 +164,35 @@ function goldenCookie() {
 }
 
 //Get dragon upgrades
-var upgradeDragon = setInterval(function () {
+function upgradeDragon() {
     if (Game.Has('A crumbly egg')) {
         Game.UpgradeDragon();
         var skipDragon = false;
     }
-}, 1);
+}
 
 //Get santa upgrades
-var upgradeSanta = setInterval(function () {
+function upgradeSanta() {
     if (Game.Has('A festive hat')) {
         Game.UpgradeSanta();
         var skipSanta = false;
     }
-}, 1);
+}
 
 //Finish out special upgrades
 function specialUpgrade() {
     if (Game.dragonLevel >= 21 && skipDragon != true) {
         Game.dragonAura = 10;
         Game.dragonAura2 = 15;
-        clearInterval(upgradeDragon);
+        intervalSetDragon(false);
         var skipDragon = true;
     }
     if (Game.santaLevel >= 14 && skipSanta != true) {
-        clearInterval(upgradeSanta);
+        intervalSetSanta(false);
         var skipSanta = true;
     }
     else {
-        
+
     }
 }
 
@@ -251,7 +278,7 @@ function prestigeWorldWide() {
     var prestigeLen = findString.length;
     for (i = 0; i < prestigeLen; i++) {
         var string = findString[i].innerHTML;
-        var split1 = string.split(" ");        
+        var split1 = string.split(" ");
         if (split1[2] + " " + split1[3] == "of income)") {
             var split2 = split1[1].split("(");
             var split3 = split2[1].split("%");
@@ -274,37 +301,25 @@ function buyUpgrades() {
     var techLen = techList.length;
     var techSkip = 0
     if (upgradesLen > 0) {
-        if ((upgradesLen === 1 && upgradesList[0].getAttribute("onclick") == "Game.UpgradesById[227].buy();") == false) {
-            for (i = 0; i < upgradesLen; i++) {
-                if (upgradesList[0].getAttribute("onclick") == "Game.UpgradesById[227].buy();" == false)
+        for (i = 0; i < upgradesLen; i++) {
+            if (upgradesList[i].getAttribute("onclick") == "Game.UpgradesById[227].buy();" == false)
                 upgradesList[i].click();
-            }
         }
     }
     if (techLen > 0) {
-        if (techList[0].getAttribute("onclick") == "Game.UpgradesById[69].buy();") {
-            techList[0].click()
-            document.getElementById("promptOption0").click();
-        }
         for (i = 0; i < skipLen; i++) {
-            if ((techList[0].getAttribute("onclick") == "Game.UpgradesById[" + noPurchase[i] + "].buy();") == false) {
+            if ((techList[i].getAttribute("onclick") == "Game.UpgradesById[" + noPurchase[i] + "].buy();") == false) {
                 techSkip++
             }
         }
         if (techSkip == 3) {
-            techList[0].click();
+            if (techList[i].getAttribute("onclick") == "Game.UpgradesById[69].buy();") {
+                techList[i].click()
+                document.getElementById("promptOption0").click();
+            }
+            else {
+                techList[0].click();
+            }
         }
     }
 }
-
-
-
-
-
-/*
-
-
-
-
-
-*/
