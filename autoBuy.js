@@ -12,7 +12,6 @@ var intervalGoldenCookie = null;
 var tech = document.getElementById("techUpgrades");
 var upgrades = document.getElementById("upgrades");
 var store = document.querySelector("[class='storeSection']");
-var storeSell = document.querySelector("[class='storeSection selling']");
 var options = document.getElementById("prefsButton");
 var stats = document.getElementById("statsButton");
 var legacy = document.getElementById("legacyButton");
@@ -217,6 +216,7 @@ function sellBuildings() {
     Game.dragonAura = 5;
     document.getElementById("storeBulkSell").click();
     document.getElementById("storeBulkMax").click();
+    var storeSell = document.querySelector("[class='storeSection selling']");
     var unlocked = storeSell.getElementsByClassName("product unlocked enabled");
     var len = unlocked.length;
     for (var i = 0; i < len - 1; i++) {
@@ -229,6 +229,7 @@ function sellBuildings() {
 
 //Prestige steps
 function prestigeMe() {
+    var breakMe = null;
     intervalSet(false);
     sellBuildings();
     document.getElementById("legacyButton").click();
@@ -250,7 +251,6 @@ function prestigeMe() {
 
 //Prestige at given %
 function prestigeWorldWide() {
-    var breakMe = null;
     if (document.getElementsByClassName("close menuClose").length < 1) {
         document.getElementById("statsButton").click();
     }
