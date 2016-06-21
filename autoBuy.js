@@ -229,25 +229,20 @@ function sellBuildings() {
 
 //Prestige steps
 function prestigeMe() {
-    var breakMe = null;
     intervalSet(false);
     sellBuildings();
     document.getElementById("legacyButton").click();
     document.getElementById("promptOption0").click();
-    for (i = 0; i < 10; i++) {
-        setTimeout(function () {
-            if (document.getElementById("ascendButton") != null) {
-                document.getElementById("ascendButton").click();
-                document.getElementById("promptOption0").click();
-                intervalSet(true);
-                breakMe = true;
-            }
-        }, 1000)
-        if (breakMe) {
-            break;
+    setTimeout(function () {
+        if (document.getElementById("ascendButton") != null) {
+            document.getElementById("ascendButton").click();
+            document.getElementById("promptOption0").click();
+            intervalSet(true);
         }
-    }
+    }, 5000)
 }
+
+
 
 //Prestige at given %
 function prestigeWorldWide() {
