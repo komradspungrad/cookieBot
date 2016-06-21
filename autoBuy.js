@@ -265,6 +265,8 @@ function prestigeMe() {
             document.getElementById("ascendButton").click();
             document.getElementById("promptOption0").click();
             intervalSet(true);
+            intervalSetDragon(true);
+            intervalSetSanta(true);
         }
     }, 5000)
 }
