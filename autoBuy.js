@@ -265,7 +265,7 @@ function buyUpgrades() {
     if (upgradesLen > 0) {
         if ((upgradesLen === 1 && upgradesList[0].getAttribute("onclick") == "Game.UpgradesById[227].buy();") == false) {
             for (i = 0; i < upgradesLen; i++) {
-                if (upgradeList[i].getAttribute("onclick") == "Game.UpgradesById[69].buy();") {
+                if (upgradesList[i].getAttribute("onclick") == "Game.UpgradesById[69].buy();") {
                     upgradesList[i].click()
                     document.getElementById("promptOption0").click();
                 }
