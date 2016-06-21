@@ -5,6 +5,8 @@ var intervalClot = null;
 var intervalSeasons = null;
 var intervalSpecial = null;
 var intervalPrestige = null;
+var intervalReindeer = null;
+var intervalGoldenCookie = null;
 
 //Common interface statics
 var tech = document.getElementById("techUpgrades");
@@ -24,7 +26,7 @@ function intervalSet(on) {
         }, 1);
         intervalUpgrades = setInterval(function () {
             buyUpgrades();
-        }, 1000);
+        }, 100);
         intervalClot = setInterval(function () {
             reloadForBadCookie();
         }, 1000);
@@ -37,6 +39,12 @@ function intervalSet(on) {
         intervalPrestige = setInterval(function () {
             prestigeWorldWide();
         }, 20000);
+        intervalReindeer = setInteval(function () {
+            seasonPopup();
+        }, 1000)
+        intervalGoldenCookie = setInterval(function () {
+            goldenCookie();
+        }, 1000)
     }
     else {
         clearInterval(intervalBuildings);
@@ -44,11 +52,15 @@ function intervalSet(on) {
         clearInterval(intervalClot);
         clearInterval(intervalSeasons);
         clearInterval(intervalSpecial);
+        clearInterval(intervalReindeer);
+        clearInterval(intervalGoldenCookie);
     }
 }
 
+//Start the setintervals
 intervalSet(true);
 
+//Loop for picking seasons
 function seasons() {
     var valentine = Game.Has('Pure heart biscuits') && Game.Has('Ardent heart biscuits') && Game.Has('Sour heart biscuits') && Game.Has('Weeping heart biscuits') && Game.Has('Golden heart biscuits') && Game.Has('Eternal heart biscuits');
     var halloween = Game.Has('Skull cookies') && Game.Has('Ghost cookies') && Game.Has('Bat cookies') && Game.Has('Slime cookies') && Game.Has('Pumpkin cookies') && Game.Has('Eyeball cookies') && Game.Has('Spider cookies');
@@ -92,6 +104,40 @@ function seasons() {
     }
 }
 
+//Loop for big cookie clicks
+function autoClicker(clicksAtOnce, repeatInterval) {
+    var cheated = false;
+    var intoTheAbyss = function () {
+        if (!cheated) {
+            cheated = true;
+            for (var i = 0; i < clicksAtOnce; i++) {
+                Game.ClickCookie();
+                Game.lastClick = 0;
+            }
+            cheated = false;
+        };
+    };
+    return setInterval(intoTheAbyss, repeatInterval);
+};
+
+//Click the big cookie
+autoClicker(100, 1);
+
+//Click the reindeers
+function seasonPopup() {
+    if (Game.seasonPopup.life > 0) {
+        Game.seasonPopup.click();
+    }
+}
+
+//Click the golden cookies
+function goldenCookie() {
+    if (Game.goldenCookie.life > 0) {
+        Game.goldenCookie.click();
+    }
+}
+
+//Get dragon upgrades
 var upgradeDragon = setInterval(function () {
     if (Game.Has('A crumbly egg')) {
         Game.UpgradeDragon();
@@ -99,6 +145,7 @@ var upgradeDragon = setInterval(function () {
     }
 }, 1);
 
+//Get santa upgrades
 var upgradeSanta = setInterval(function () {
     if (Game.Has('A festive hat')) {
         Game.UpgradeSanta();
@@ -106,6 +153,7 @@ var upgradeSanta = setInterval(function () {
     }
 }, 1);
 
+//Finish out special upgrades
 function specialUpgrade() {
     if (Game.dragonLevel >= 21 && skipDragon != true) {
         Game.dragonAura = 10;
@@ -122,6 +170,7 @@ function specialUpgrade() {
     }
 }
 
+//Export/import and reload
 function reload() {
     var optionsMenu = document.getElementsByClassName("option");
     var lenMenu = optionsMenu.length;
@@ -136,6 +185,7 @@ function reload() {
     document.getElementById("statsButton").click();
 }
 
+//Reload for clot
 function reloadForBadCookie() {
     if (Game.frenzyPower == 0.5) {
         reload();
@@ -143,6 +193,7 @@ function reloadForBadCookie() {
     }
 }
 
+//Buy best building
 function buyBuilding() {
     if (document.querySelector("[class='storeSection']") == null) {
         document.getElementById("storeBulkBuy").click();
@@ -161,6 +212,7 @@ function buyBuilding() {
     }
 }
 
+//Sell for prestige
 function sellBuildings() {
     Game.dragonAura = 5;
     document.getElementById("storeBulkSell").click();
@@ -175,6 +227,7 @@ function sellBuildings() {
     }
 }
 
+//Prestige at given %
 function prestigeWorldWide() {
     if (document.getElementsByClassName("close menuClose").length < 1) {
         document.getElementById("statsButton").click();
@@ -231,38 +284,8 @@ function buyUpgrades() {
 
 /*
 
-function seasonPopup()
-{
-    if (Game.seasonPopup.life > 0) {
-        Game.seasonPopup.click();
-    }
-}
 
-function goldenCookie()
-{
-    if (Game.goldenCookie.life > 0) {
-        Game.goldenCookie.click();
-    }
-}
 
-var autoClicker = function (clicksAtOnce, repeatInterval)
-{
-    var cheated = false;
-    var intoTheAbyss = function ()
-    {
-        if (!cheated)
-        {
-            cheated = true;
-            for (var i = 0; i < clicksAtOnce; i++)
-            {
-                Game.ClickCookie();
-                Game.lastClick = 0;
-            }
-            cheated = false;
-        };
-    };
-    return setInterval(intoTheAbyss, repeatInterval);
-};
-autoClicker(100, 1);
+
 
 */
