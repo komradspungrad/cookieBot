@@ -273,6 +273,7 @@ function buyUpgrades() {
     var techList = tech.getElementsByClassName("crate upgrade enabled");
     var upgradesLen = upgradesList.length;
     var techLen = techList.length;
+    var techSkip = 0
     if (upgradesLen > 0) {
         if ((upgradesLen === 1 && upgradesList[0].getAttribute("onclick") == "Game.UpgradesById[227].buy();") == false) {
             for (i = 0; i < upgradesLen; i++) {
@@ -288,8 +289,11 @@ function buyUpgrades() {
         }
         for (i = 0; i < skipLen; i++) {
             if ((techList[0].getAttribute("onclick") == "Game.UpgradesById[" + noPurchase[i] + "].buy();") == false) {
-                techList[0].click();
+                techSkip++
             }
+        }
+        if (techSkip == 3) {
+            techList[0].click();
         }
     }
 }
