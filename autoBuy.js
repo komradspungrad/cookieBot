@@ -265,15 +265,15 @@ function buyUpgrades() {
     if (upgradesLen > 0) {
         if ((upgradesLen === 1 && upgradesList[0].getAttribute("onclick") == "Game.UpgradesById[227].buy();") == false) {
             for (i = 0; i < upgradesLen; i++) {
-                if (upgradesList[i].getAttribute("onclick") == "Game.UpgradesById[69].buy();") {
-                    upgradesList[i].click()
-                    document.getElementById("promptOption0").click();
-                }
                 upgradesList[i].click();
             }
         }
     }
     if (techLen > 0) {
+        if (techList[0].getAttribute("onclick") == "Game.UpgradesById[69].buy();") {
+            techList[0].click()
+            document.getElementById("promptOption0").click();
+        }
         for (i = 0; i < skipLen; i++) {
             if ((techList[0].getAttribute("onclick") == "Game.UpgradesById[" + noPurchase[i] + "].buy();") == false) {
                 techList[0].click();
