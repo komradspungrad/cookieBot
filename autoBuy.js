@@ -216,11 +216,14 @@ function buyUpgrades() {
             }
         }
     }
-    for (i = 0; i < skipLen; i++) {
-        if ((techList[0].getAttribute("onclick") == "Game.UpgradesById[" + noPurchase[i] + "].buy();") == false) {
-            techList[0].click();
+    if (techLen > 0) {
+        for (i = 0; i < skipLen; i++) {
+            if ((techList[0].getAttribute("onclick") == "Game.UpgradesById[" + noPurchase[i] + "].buy();") == false) {
+                techList[0].click();
+            }
         }
     }
+    
 }
 
 
