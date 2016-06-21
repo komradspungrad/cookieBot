@@ -229,6 +229,7 @@ function sellBuildings() {
 
 //Prestige steps
 function prestigeMe() {
+    var breakMe = null;
     intervalSet(false);
     sellBuildings();
     document.getElementById("legacyButton").click();
@@ -250,7 +251,6 @@ function prestigeMe() {
 
 //Prestige at given %
 function prestigeWorldWide() {
-    var breakMe = null;
     if (document.getElementsByClassName("close menuClose").length < 1) {
         document.getElementById("statsButton").click();
     }
