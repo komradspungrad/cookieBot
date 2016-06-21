@@ -17,17 +17,6 @@ function intervalSet(on) {
     }
 }
 
-var oneMs = setInterval(function () {
-    buyBuilding();
-}, 1);
-
-var oneS = setInterval(function () {
-    buyUpgrades();
-    reloadForBadCookie();
-    specialUpgrade();
-    seasons();
-}, 1000);
-
 var prestigeMe = setInterval(function () {
     prestigeWorldWide();
 }, 20000);
