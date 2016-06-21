@@ -227,8 +227,30 @@ function sellBuildings() {
     }
 }
 
+//Prestige steps
+function prestigeMe() {
+    intervalSet(false);
+    sellBuildings();
+    document.getElementById("legacyButton").click();
+    document.getElementById("promptOption0").click();
+    for (i = 0; i < 10; i++) {
+        setTimeout(function () {
+            if (document.getElementById("ascendButton") != null) {
+                document.getElementById("ascendButton").click();
+                document.getElementById("promptOption0").click();
+                intervalSet(true);
+                breakMe = true;
+            }
+        }, 1000)
+        if (breakMe) {
+            break;
+        }
+    }
+}
+
 //Prestige at given %
 function prestigeWorldWide() {
+    var breakMe = null;
     if (document.getElementsByClassName("close menuClose").length < 1) {
         document.getElementById("statsButton").click();
     }
@@ -236,18 +258,7 @@ function prestigeWorldWide() {
     var prestigeLen = prestigeStatus.length;
     for (i = 0; i < prestigeLen; i++) {
         if (prestigeStatus[i].innerHTML == " (25.00% of income)") {
-            intervalSet(false);
-            sellBuildings();
-            document.getElementById("legacyButton").click();
-            document.getElementById("promptOption0").click();
-            for (i = 0; i < 10; i++) {
-                if (document.getElementById("ascendButton") != null) {
-                    document.getElementById("ascendButton").click();
-                    document.getElementById("promptOption0").click();
-                    intervalSet(true);
-                    break;
-                }
-            }
+            prestigeMe();
         }
     }
 }
