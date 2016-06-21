@@ -12,7 +12,6 @@ var intervalGoldenCookie = null;
 var tech = document.getElementById("techUpgrades");
 var upgrades = document.getElementById("upgrades");
 var store = document.querySelector("[class='storeSection']");
-var storeSell = document.querySelector("[class='storeSection selling']");
 var options = document.getElementById("prefsButton");
 var stats = document.getElementById("statsButton");
 var legacy = document.getElementById("legacyButton");
@@ -217,6 +216,7 @@ function sellBuildings() {
     Game.dragonAura = 5;
     document.getElementById("storeBulkSell").click();
     document.getElementById("storeBulkMax").click();
+    var storeSell = document.querySelector("[class='storeSection selling']");
     var unlocked = storeSell.getElementsByClassName("product unlocked enabled");
     var len = unlocked.length;
     for (var i = 0; i < len - 1; i++) {
