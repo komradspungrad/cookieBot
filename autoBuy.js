@@ -26,7 +26,7 @@ function intervalSet(on) {
         }, 1);
         intervalUpgrades = setInterval(function () {
             buyUpgrades();
-        }, 100);
+        }, 1000);
         intervalClot = setInterval(function () {
             reloadForBadCookie();
         }, 1000);
