@@ -235,6 +235,9 @@ function buyBuilding() {
         if (buy != null) {
             buy.click();
         }
+        else if (store.querySelector("[style='color: rgb(0, 255, 0);']") == null) {
+            unlocked[0].click();
+        }
     }
 }
 
