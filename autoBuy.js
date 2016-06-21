@@ -7,7 +7,7 @@ var intervalSpecial = null;
 var intervalPrestige = null;
 
 //Common interface statics
-var toggle = document.getElementById("toggle");
+var toggle = document.getElementById("toggleUpgrades");
 var tech = document.getElementById("techUpgrades");
 var upgrades = document.getElementById("upgrades");
 var store = document.querySelector("[class='storeSection']");
