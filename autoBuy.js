@@ -15,7 +15,7 @@ var store = document.querySelector("[class='storeSection']");
 var options = document.getElementById("prefsButton");
 var stats = document.getElementById("statsButton");
 var legacy = document.getElementById("legacyButton");
-
+var prestigeNow = 25;
 
 //Interval manager
 function intervalSet(on) {
@@ -242,18 +242,22 @@ function prestigeMe() {
     }, 5000)
 }
 
-
-
 //Prestige at given %
 function prestigeWorldWide() {
     if (document.getElementsByClassName("close menuClose").length < 1) {
         document.getElementById("statsButton").click();
     }
-    var prestigeStatus = document.getElementsByTagName('small');
-    var prestigeLen = prestigeStatus.length;
+    var findString = document.getElementsByTagName('small');
+    var prestigeLen = findString.length;
     for (i = 0; i < prestigeLen; i++) {
-        if (prestigeStatus[i].innerHTML == " (25.00% of income)") {
-            prestigeMe();
+        var string = findString[i].innerHTML;
+        var split1 = string.split(" ");        
+        if (split1[2] + " " + split1[3] == "of income)") {
+            var split2 = split1[1].split("(");
+            var split3 = split2[1].split("%");
+            if (split3[0] <= prestigeNow) {
+                console.log("did it!");
+            }
         }
     }
 }
