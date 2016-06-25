@@ -10,13 +10,18 @@ var intervalGoldenCookie = null;
 var intervalDragon = null;
 var intervalSanta = null;
 
+//create global functions for common commands
+function qs(e) { return querySelector(e); }
+function gBid(e) { return getElementById(e); }
+function gBcn(e) { return getElementsByClassName(e); }
+
 //Common interface statics
-var tech = document.getElementById("techUpgrades");
-var upgrades = document.getElementById("upgrades");
-var store = document.querySelector("[class='storeSection']");
-var options = document.getElementById("prefsButton");
-var stats = document.getElementById("statsButton");
-var legacy = document.getElementById("legacyButton");
+var tech = document.gBid("techUpgrades");
+var upgrades = document.gBid("upgrades");
+var store = document.qs("[class='storeSection']");
+var options = document.gBid("prefsButton");
+var stats = document.gBid("statsButton");
+var legacy = document.gBid("legacyButton");
 var prestigeNow = 25;
 
 //Interval manager
@@ -94,11 +99,11 @@ function seasons() {
     var easter = Game.Has('Chicken egg') && Game.Has('Duck egg') && Game.Has('Turkey egg') && Game.Has('Quail egg') && Game.Has('Robin egg') && Game.Has('Ostrich egg') && Game.Has('Cassowary egg') && Game.Has('Salmon roe') && Game.Has('Frogspawn') && Game.Has('Shark egg') && Game.Has('Turtle egg') && Game.Has('Ant larva') && Game.Has('Golden goose egg') && Game.Has('Faberge egg') && Game.Has('Wrinklerspawn') && Game.Has('Cookie egg') && Game.Has('Omelette') && Game.Has('Century egg') && Game.Has('"egg"') && Game.UpgradesById[227] != null;
     var goldenCookieReload = Game.Has('Lucky day') && Game.Has('Serendipity') && Game.Has('Get lucky');
     var wrinklers = 0;
-    var toggle = document.getElementById("toggleUpgrades");
-    var valentineButton = toggle.querySelector("[onclick='Game.UpgradesById[184].buy();']");
-    var halloweenButton = toggle.querySelector("[onclick='Game.UpgradesById[183].buy();']");
-    var christmasButton = toggle.querySelector("[onclick='Game.UpgradesById[182].buy();']");
-    var easterButton = toggle.querySelector("[onclick='Game.UpgradesById[209].buy();']");
+    var toggle = document.gBid("toggleUpgrades");
+    var valentineButton = toggle.qs("[onclick='Game.UpgradesById[184].buy();']");
+    var halloweenButton = toggle.qs("[onclick='Game.UpgradesById[183].buy();']");
+    var christmasButton = toggle.qs("[onclick='Game.UpgradesById[182].buy();']");
+    var easterButton = toggle.qs("[onclick='Game.UpgradesById[209].buy();']");
     for (i = 0; i < 12; i++) {
         if (Game.wrinklers[i].close == 1) {
             wrinklers++;
@@ -153,6 +158,9 @@ autoClicker(100, 1);
 function seasonPopup() {
     if (Game.seasonPopup.life > 0) {
         Game.seasonPopup.click();
+        if (Game.frenzy == 666) {
+            console.log("Nailed it!");
+        }
     }
 }
 
@@ -198,44 +206,44 @@ function specialUpgrade() {
 
 //Export/import and reload
 function reload() {
-    var optionsMenu = document.getElementsByClassName("option");
+    var optionsMenu = document.gBcn("option");
     var lenMenu = optionsMenu.length;
     options.click();
     Game.WriteSave();
     Game.ExportSave();
-    var saveData = document.getElementById("textareaPrompt").innerHTML;
+    var saveData = document.gBid("textareaPrompt").innerHTML;
     Game.ClosePrompt();
     Game.ImportSave();
-    document.getElementById("textareaPrompt").innerHTML = saveData;
-    document.getElementById("promptOption0").click();
-    document.getElementById("statsButton").click();
+    document.gBid("textareaPrompt").innerHTML = saveData;
+    document.gBid("promptOption0").click();
+    document.gBid("statsButton").click();
 }
 
 //Reload for clot
 function reloadForBadCookie() {
     if (Game.frenzyPower == 0.5) {
         reload();
-        document.getElementById("statsButton").click();
+        document.gBid("statsButton").click();
     }
 }
 
 //Buy best building
 function buyBuilding() {
-    if (document.querySelector("[class='storeSection']") == null) {
-        document.getElementById("storeBulkBuy").click();
+    if (document.qs("[class='storeSection']") == null) {
+        document.gBid("storeBulkBuy").click();
     }
-    var buy1 = document.getElementById("storeBulk1");
+    var buy1 = document.gBid("storeBulk1");
     if (buy1.getAttribute("class") != "storeBulkAmount selected") {
         buy1.click();
     }
-    var unlocked = store.getElementsByClassName("product unlocked enabled");
+    var unlocked = store.gBcn("product unlocked enabled");
     var len = unlocked.length;
     for (var i = 0; i < len; i++) {
-        var buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
+        var buy = unlocked[i].qs("[style='color: rgb(0, 255, 0);']");
         if (buy != null) {
             buy.click();
         }
-        else if (store.querySelector("[style='color: rgb(0, 255, 0);']") == null) {
+        else if (store.qs("[style='color: rgb(0, 255, 0);']") == null) {
             unlocked[0].click();
         }
     }
@@ -244,16 +252,16 @@ function buyBuilding() {
 //Sell for prestige
 function sellBuildings() {
     Game.dragonAura = 5;
-    document.getElementById("storeBulkSell").click();
-    document.getElementById("storeBulkMax").click();
-    var storeSell = document.querySelector("[class='storeSection selling']");
-    var unlocked = storeSell.getElementsByClassName("product unlocked enabled");
+    document.gBid("storeBulkSell").click();
+    document.gBid("storeBulkMax").click();
+    var storeSell = document.qs("[class='storeSection selling']");
+    var unlocked = storeSell.gBcn("product unlocked enabled");
     var len = unlocked.length;
     for (var i = 0; i < len - 1; i++) {
         unlocked[i].click();
     }
-    if (document.querySelector("[onclick='Game.UpgradesById[227].buy();']") != null) {
-        document.querySelector("[onclick='Game.UpgradesById[227].buy();']").click();
+    if (document.qs("[onclick='Game.UpgradesById[227].buy();']") != null) {
+        document.qs("[onclick='Game.UpgradesById[227].buy();']").click();
     }
 }
 
@@ -261,12 +269,12 @@ function sellBuildings() {
 function prestigeMe() {
     intervalSet(false);
     sellBuildings();
-    document.getElementById("legacyButton").click();
-    document.getElementById("promptOption0").click();
+    document.gBid("legacyButton").click();
+    document.gBid("promptOption0").click();
     setTimeout(function () {
-        if (document.getElementById("ascendButton") != null) {
-            document.getElementById("ascendButton").click();
-            document.getElementById("promptOption0").click();
+        if (document.gBid("ascendButton") != null) {
+            document.gBid("ascendButton").click();
+            document.gBid("promptOption0").click();
             intervalSet(true);
             intervalSetDragon(true);
             intervalSetSanta(true);
@@ -276,8 +284,8 @@ function prestigeMe() {
 
 //Prestige at given %
 function prestigeWorldWide() {
-    if (document.getElementsByClassName("close menuClose").length < 1) {
-        document.getElementById("statsButton").click();
+    if (document.gBcn("close menuClose").length < 1) {
+        document.gBid("statsButton").click();
     }
     var findString = document.getElementsByTagName('small');
     var prestigeLen = findString.length;
@@ -300,8 +308,8 @@ var skipLen = noPurchase.length;
 
 //Buy upgrades when they're available
 function buyUpgrades() {
-    var upgradesList = upgrades.getElementsByClassName("crate upgrade enabled");
-    var techList = tech.getElementsByClassName("crate upgrade enabled");
+    var upgradesList = upgrades.gBcn("crate upgrade enabled");
+    var techList = tech.gBcn("crate upgrade enabled");
     var upgradesLen = upgradesList.length;
     var techLen = techList.length;
     var techSkip = 0
@@ -321,7 +329,7 @@ function buyUpgrades() {
             if (techSkip == 3) {
                 if (techList[i].getAttribute("onclick") == "Game.UpgradesById[69].buy();") {
                     techList[i].click()
-                    document.getElementById("promptOption0").click();
+                    document.gBid("promptOption0").click();
                 }
                 else {
                     techList[i].click();
