@@ -14,7 +14,7 @@ var intervalSanta = null;
 function qs(e) { return document.querySelector(e); }
 function gBid(e) { return document.getElementById(e); }
 function gBcn(e) { return document.getElementsByClassName(e); }
-function gUBid(e) { return "[onclick='GetUpgradesById[" + e + "].buy();']"; }
+function gUBid(e) { return "[onclick='Game.UpgradesById[" + e + "].buy();']"; }
 
 //Common interface statics
 var tech = gBid("techUpgrades");
@@ -101,10 +101,10 @@ function seasons() {
     var goldenCookieReload = Game.Has('Lucky day') && Game.Has('Serendipity') && Game.Has('Get lucky');
     var wrinklers = 0;
     var toggle = gBid("toggleUpgrades");
-    var valentineButton = toggle.querySelector(gUBid("184"));
-    var halloweenButton = toggle.querySelector(gUBid("183"));
-    var christmasButton = toggle.querySelector(gUBid("182"));
-    var easterButton = toggle.querySelector(gUBid("209"));
+    var valentineButton = toggle.querySelector(gUBid(184));
+    var halloweenButton = toggle.querySelector(gUBid(183));
+    var christmasButton = toggle.querySelector(gUBid(182));
+    var easterButton = toggle.querySelector(gUBid(209));
     for (i = 0; i < 12; i++) {
         if (Game.wrinklers[i].close == 1) {
             wrinklers++;
