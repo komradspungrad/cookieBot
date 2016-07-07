@@ -24,6 +24,9 @@ var options = gBid("prefsButton");
 var stats = gBid("statsButton");
 var legacy = gBid("legacyButton");
 var prestigeNow = 25;
+var trackBuy = 0;
+var trackBuy10 = 0;
+var trackbuy100 = 0;
 
 //Interval manager
 function intervalSet(on) {
@@ -230,24 +233,81 @@ function reloadForBadCookie() {
 
 //Buy best building
 function buyBuilding() {
+    var unlocked = store.getElementsByClassName("product unlocked enabled");
+    var len = unlocked.length;
     if (qs("[class='storeSection']") == null) {
         gBid("storeBulkBuy").click();
     }
+    if (store.querySelector("[style='color: rgb(0, 255, 0);']") == null) {
+        unlocked[0].click();
+    }
+    var buy;
     var buy1 = gBid("storeBulk1");
-    if (buy1.getAttribute("class") != "storeBulkAmount selected") {
-        buy1.click();
-    }
-    var unlocked = store.getElementsByClassName("product unlocked enabled");
-    var len = unlocked.length;
-    for (var i = 0; i < len; i++) {
-        var buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
-        if (buy != null) {
-            buy.click();
+    var buy10 = gBid("storeBulk10");
+    var buy100 = gBid("storeBulk100");
+    unlocked = store.getElementsByClassName("product unlocked enabled");
+    len = unlocked.length;
+    if (trackBuy100 != null) {
+        buy100.click();
+        unlocked = store.getElementsByClassName("product unlocked enabled");
+        for (i = 0; i < len; i++) {
+            buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
+            if (buy != null){
+                buy.click();
+            }
+            else {                
+                if (i < len - 1) {
+                    trackBuy100++
+                    if (trackBuy100 > 1000) {
+                        trackBuy100 = null
+                    }
+                }
+            }
         }
-        else if (store.querySelector("[style='color: rgb(0, 255, 0);']") == null) {
-            unlocked[0].click();
+    }
+    else if (trackBuy10 != null) {
+        buy10.click();
+        unlocked = store.getElementsByClassName("product unlocked enabled");
+        for (i = 0; i < len; i++) {
+            buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
+            if (buy != null){
+                buy.click();
+            }
+            else
+            {                
+                if (i < len - 1) {
+                    trackBuy10++
+                    if (trackBuy10 > 1000) {
+                        trackBuy10 = null
+                    }
+                }
+            }
         }
     }
+    else {
+        var unlocked = store.getElementsByClassName("product unlocked enabled");
+        var len = unlocked.length;
+        for (var i = 0; i < len; i++) {
+            var buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
+            if (buy != null) {
+                buy.click();
+            }
+        }
+    }
+    // if (buy1.getAttribute("class") != "storeBulkAmount selected") {
+    //     buy1.click();
+    // }
+    // var unlocked = store.getElementsByClassName("product unlocked enabled");
+    // var len = unlocked.length;
+    // for (var i = 0; i < len; i++) {
+    //     var buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
+    //     if (buy != null) {
+    //         buy.click();
+    //     }
+    //     else if (store.querySelector("[style='color: rgb(0, 255, 0);']") == null) {
+    //         unlocked[0].click();
+    //     }
+    // }
 }
 
 //Sell for prestige
