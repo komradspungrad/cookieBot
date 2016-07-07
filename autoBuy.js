@@ -256,10 +256,11 @@ function buyBuilding() {
             buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
             if (buy != null){
                 buy.click();
+                trackBuy100 = 0;
             }
             else {
                     trackBuy100++
-                    if (trackBuy100 > 100) {
+                    if (trackBuy100 > 1000) {
                         trackBuy100 = null
                     }
                 }
@@ -267,7 +268,7 @@ function buyBuilding() {
         }
         else {
             trackBuy100++
-            if (trackBuy100 > 100) {
+            if (trackBuy100 > 1000) {
                 trackBuy100 = null
             }
         }
@@ -281,10 +282,11 @@ function buyBuilding() {
                 buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
                 if (buy != null){
                     buy.click();
+                    trackBuy10 = 0;
                 }
                 else {
                     trackBuy10++
-                    if (trackBuy10 > 100) {
+                    if (trackBuy10 > 2000) {
                         trackBuy10 = null
                     }
                 }
@@ -292,7 +294,7 @@ function buyBuilding() {
         }
         else {
             trackBuy10++
-            if (trackBuy10 > 100) {
+            if (trackBuy10 > 2000) {
                 trackBuy10 = null
             }
         }
