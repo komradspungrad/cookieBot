@@ -259,7 +259,7 @@ function buyBuilding() {
             }
             else {
                     trackBuy100++
-                    if (trackBuy100 > 10) {
+                    if (trackBuy100 > 100) {
                         trackBuy100 = null
                     }
                 }
@@ -281,7 +281,7 @@ function buyBuilding() {
                 }
                 else {
                     trackBuy10++
-                    if (trackBuy10 > 10) {
+                    if (trackBuy10 > 100) {
                         trackBuy10 = null
                     }
                 }
