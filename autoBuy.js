@@ -251,62 +251,58 @@ function buyBuilding() {
         buy100.click();
         unlocked = store.getElementsByClassName("product unlocked enabled");
         len = unlocked.length;
-        for (i = 0; i < len; i++) {
+        if (len > 0) {
+            for (i = 0; i < len; i++) {
             buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
             if (buy != null){
                 buy.click();
             }
             else {
                     trackBuy100++
-                    if (trackBuy100 > 1000) {
+                    if (trackBuy100 > 10) {
                         trackBuy100 = null
-                    }                
+                    }
+                }
             }
+        }
+        else {
+            trackBuy100++
         }
     }
     else if (trackBuy10 != null) {
         buy10.click();
         unlocked = store.getElementsByClassName("product unlocked enabled");
         len = unlocked.length;
-        for (i = 0; i < len; i++) {
-            buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
-            if (buy != null){
-                buy.click();
-            }
-            else
-            {
+        if (len > 0) {
+            for (i = 0; i < len; i++) {
+                buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
+                if (buy != null){
+                    buy.click();
+                }
+                else {
                     trackBuy10++
-                    if (trackBuy10 > 1000) {
+                    if (trackBuy10 > 10) {
                         trackBuy10 = null
-                    
+                    }
                 }
             }
+        }
+        else {
+            trackBuy10++
         }
     }
     else {
         unlocked = store.getElementsByClassName("product unlocked enabled");
         len = unlocked.length;
-        for (var i = 0; i < len; i++) {
-            var buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
-            if (buy != null) {
-                buy.click();
+        if (len > 0) {
+            for (var i = 0; i < len; i++) {
+            buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
+                if (buy != null) {
+                    buy.click();
+                }
             }
         }
     }
-    // if (buy1.getAttribute("class") != "storeBulkAmount selected") {
-    //     buy1.click();
-    // }
-    // var unlocked = store.getElementsByClassName("product unlocked enabled");
-    // var len = unlocked.length;
-    // for (var i = 0; i < len; i++) {
-    //     var buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
-    //     if (buy != null) {
-    //         buy.click();
-    //     }
-    //     else if (store.querySelector("[style='color: rgb(0, 255, 0);']") == null) {
-    //         unlocked[0].click();
-    //     }
-    // }
 }
 
 //Sell for prestige
