@@ -250,6 +250,7 @@ function buyBuilding() {
     if (trackBuy100 != null) {
         buy100.click();
         unlocked = store.getElementsByClassName("product unlocked enabled");
+        len = unlocked.length;
         for (i = 0; i < len; i++) {
             buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
             if (buy != null){
@@ -266,6 +267,7 @@ function buyBuilding() {
     else if (trackBuy10 != null) {
         buy10.click();
         unlocked = store.getElementsByClassName("product unlocked enabled");
+        len = unlocked.length;
         for (i = 0; i < len; i++) {
             buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
             if (buy != null){
@@ -282,8 +284,8 @@ function buyBuilding() {
         }
     }
     else {
-        var unlocked = store.getElementsByClassName("product unlocked enabled");
-        var len = unlocked.length;
+        unlocked = store.getElementsByClassName("product unlocked enabled");
+        len = unlocked.length;
         for (var i = 0; i < len; i++) {
             var buy = unlocked[i].querySelector("[style='color: rgb(0, 255, 0);']");
             if (buy != null) {
