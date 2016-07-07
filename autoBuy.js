@@ -255,13 +255,11 @@ function buyBuilding() {
             if (buy != null){
                 buy.click();
             }
-            else {                
-                if (i < len - 1) {
+            else {
                     trackBuy100++
                     if (trackBuy100 > 1000) {
                         trackBuy100 = null
-                    }
-                }
+                    }                
             }
         }
     }
@@ -274,12 +272,11 @@ function buyBuilding() {
                 buy.click();
             }
             else
-            {                
-                if (i < len - 1) {
+            {
                     trackBuy10++
                     if (trackBuy10 > 1000) {
                         trackBuy10 = null
-                    }
+                    
                 }
             }
         }
