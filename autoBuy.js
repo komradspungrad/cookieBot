@@ -292,6 +292,7 @@ function buyBuilding() {
         }
     }
     else {
+        buy1.click();
         unlocked = store.getElementsByClassName("product unlocked enabled");
         len = unlocked.length;
         if (len > 0) {
