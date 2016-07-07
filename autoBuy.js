@@ -280,7 +280,7 @@ function prestigeMe() {
             intervalSetDragon(true);
             intervalSetSanta(true);
         }
-    }, 5000)
+    }, 7000)
 }
 
 //Prestige at given %
