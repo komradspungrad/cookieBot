@@ -28,6 +28,7 @@ var trackBuy = 0;
 var trackBuy10 = 0;
 var trackBuy100 = 0;
 
+
 //Interval manager
 function intervalSet(on) {
     if (on) {
