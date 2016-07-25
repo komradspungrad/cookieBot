@@ -28,7 +28,6 @@ var trackBuy = 0;
 var trackBuy10 = 0;
 var trackBuy100 = 0;
 
-
 //Interval manager
 function intervalSet(on) {
     if (on) {
@@ -120,7 +119,7 @@ function seasons() {
     else if (valentine == false) {
         valentineButton.click();
     }
-    else if (Game.shimmerTypes['golden'].maxTime > 6413) {
+    else if (Game.shimmerTypes['golden'].maxTime > 6092) {
         if (goldenCookieReload == true && Game.clickFrenzy == 0 && Game.frenzy == 0) {
             reload();
         }
@@ -161,7 +160,7 @@ autoClicker(1000, 1);
 
 //Click the reindeers
 function seasonPopup() {
-    if (Game.shimmerTypes['reindeer'].life > 0) {
+    if (Game.shimmerTypes['reindeer'].spawned > 0) {
         Game.shimmerTypes['reindeer'].click();
         if (Game.frenzy == 666) {
             console.log("Nailed it!");
@@ -171,7 +170,7 @@ function seasonPopup() {
 
 //Click the golden cookies
 function goldenCookie() {
-    if (Game.shimmerTypes['golden'].life > 0) {
+    if (Game.shimmerTypes['golden'].spawned > 0) {
         Game.shimmerTypes['golden'].click();
     }
 }
