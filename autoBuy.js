@@ -5,10 +5,11 @@ var intervalClot = null;
 var intervalSeasons = null;
 var intervalSpecial = null;
 var intervalPrestige = null;
-var intervalReindeer = null;
-var intervalGoldenCookie = null;
+// var intervalReindeer = null;
+// var intervalGoldenCookie = null;
 var intervalDragon = null;
 var intervalSanta = null;
+var intervalShimmerPop = null;
 
 //create global functions for common commands
 function qs(e) { return document.querySelector(e); }
@@ -49,12 +50,15 @@ function intervalSet(on) {
         intervalPrestige = setInterval(function () {
             prestigeWorldWide();
         }, 20000);
-        intervalReindeer = setInterval(function () {
-            seasonPopup();
+        intervalShimmerPop = setInterval(function() {
+            shimmerPop();
         }, 1000);
-        intervalGoldenCookie = setInterval(function () {
-            goldenCookie();
-        }, 1000);
+        // intervalReindeer = setInterval(function () {
+        //     seasonPopup();
+        // }, 1000);
+        // intervalGoldenCookie = setInterval(function () {
+        //     goldenCookie();
+        // }, 1000);
 
     }
     else {
@@ -158,22 +162,29 @@ function autoClicker(clicksAtOnce, repeatInterval) {
 //Click the big cookie
 autoClicker(1000, 1);
 
-//Click the reindeers
-function seasonPopup() {
-    if (Game.shimmerTypes['reindeer'].spawned > 0) {
-        Game.shimmerTypes['reindeer'].click();
-        if (Game.frenzy == 666) {
-            console.log("Nailed it!");
-        }
-    }
+//Click the cookies/Reindeer
+function shimmerPop() {
+    Game.shimmers.forEach(function(shimmer) {
+		shimmer.pop();
+	});
 }
 
-//Click the golden cookies
-function goldenCookie() {
-    if (Game.shimmerTypes['golden'].spawned > 0) {
-        Game.shimmerTypes['golden'].click();
-    }
-}
+// //Click the reindeers
+// function seasonPopup() {
+//     if (Game.shimmerTypes['reindeer'].spawned > 0) {
+//         Game.shimmerTypes['reindeer'].;
+//         if (Game.frenzy == 666) {
+//             console.log("Nailed it!");
+//         }
+//     }
+// }
+
+// //Click the golden cookies
+// function goldenCookie() {
+//     if (Game.shimmerTypes['golden'].spawned > 0) {
+//         Game.shimmerTypes['golden'].click();
+//     }
+// }
 
 //Get dragon upgrades
 function upgradeDragon() {
