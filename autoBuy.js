@@ -119,7 +119,7 @@ function seasons() {
     else if (valentine == false) {
         valentineButton.click();
     }
-    else if (Game.goldenCookie.maxTime > 6413) {
+    else if (Game.shimmerTypes['golden'].maxTime > 6413) {
         if (goldenCookieReload == true && Game.clickFrenzy == 0 && Game.frenzy == 0) {
             reload();
         }
@@ -160,8 +160,8 @@ autoClicker(1000, 1);
 
 //Click the reindeers
 function seasonPopup() {
-    if (Game.seasonPopup.life > 0) {
-        Game.seasonPopup.click();
+    if (Game.shimmerTypes['reindeer'].life > 0) {
+        Game.shimmerTypes['reindeer'].click();
         if (Game.frenzy == 666) {
             console.log("Nailed it!");
         }
@@ -170,8 +170,8 @@ function seasonPopup() {
 
 //Click the golden cookies
 function goldenCookie() {
-    if (Game.goldenCookie.life > 0) {
-        Game.goldenCookie.click();
+    if (Game.shimmerTypes['golden'].life > 0) {
+        Game.shimmerTypes['golden'].click();
     }
 }
 
